@@ -13,30 +13,23 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float xMax; 
     [SerializeField] private float zMin; 
     [SerializeField] private float zMax;
-    private PlayerInput playerInput;
     private InputActions inputActions;
     
-    // Start is called before the first frame update
     private void Awake() {
         _camera = Camera.main;
-        playerInput = GetComponent<PlayerInput>();
-        inputActions = new InputActions();
-        inputActions.Player.Enable();
+        // inputActions = new InputActions();
+        // inputActions.Player.Enable();
         // inputActions.Player.CameraMovement.performed += MoveCamera;
     }
-    void Start()
-    {
-        Debug.Log(inputActions.ToString());
+    private void Start() {
+        inputActions = GameController.instance._InputActions;
     }
-
-    // Update is called once per frame
     void Update()
     {
         MoveCamera();
         RotateCamera();
-        // Debug.Log(_camera.transform.rotation);
-        
     }
+
     // potentially speed up movement when key pressed for longer
     public void MoveCamera()
     {
