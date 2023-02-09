@@ -7,6 +7,8 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI currentTimeText;
+    [SerializeField] private TextMeshProUGUI recordTimeText;
     [SerializeField] private GameObject decisionPanel;
     [SerializeField] private TextMeshProUGUI decisionText;
     [SerializeField] private GameObject informationPanel;
@@ -55,6 +57,7 @@ public class UIController : MonoBehaviour
     }
     public void OnGameStart()
     {
+        GameController.instance.GameStart();
         gameOverPanel.SetActive(false);
         startPanel.SetActive(false);
     }

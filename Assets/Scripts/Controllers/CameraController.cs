@@ -17,9 +17,6 @@ public class CameraController : MonoBehaviour
     
     private void Awake() {
         _camera = Camera.main;
-        // inputActions = new InputActions();
-        // inputActions.Player.Enable();
-        // inputActions.Player.CameraMovement.performed += MoveCamera;
     }
     private void Start() {
         inputActions = GameController.instance._InputActions;

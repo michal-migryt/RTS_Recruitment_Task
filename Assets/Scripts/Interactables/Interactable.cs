@@ -38,4 +38,5 @@ public class Interactable : MonoBehaviour
    
     public virtual void Interact(){}
     public virtual void OnPositiveDecision(){}
+    public virtual void NewGameState(){}
 }
