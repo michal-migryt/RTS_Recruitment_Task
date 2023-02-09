@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using System.Collections.Specialized;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     private Camera _camera;
+    [SerializeField] private Vector3 defaultCameraPos;
     [SerializeField] private float cameraMovementSpeed;
     [SerializeField] private float rotationSpeed;
     [Header("Transform position range")]
@@ -13,6 +15,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float xMax; 
     [SerializeField] private float zMin; 
     [SerializeField] private float zMax;
+    
     private InputActions inputActions;
     
     private void Awake() {
@@ -20,13 +23,17 @@ public class CameraController : MonoBehaviour
     }
     private void Start() {
         inputActions = GameController.instance._InputActions;
+        GameController.instance.startGameDelegate += ResetCameraPosition;
     }
     void Update()
     {
         MoveCamera();
         RotateCamera();
     }
-
+    public void ResetCameraPosition()
+    {
+        transform.position = defaultCameraPos;
+    }
     // potentially speed up movement when key pressed for longer
     public void MoveCamera()
     {
@@ -34,7 +41,6 @@ public class CameraController : MonoBehaviour
         // essential usage of AngleAxis to make sure that movement is applied correctly horizontally and vertically when camera is rotated
         Vector3 movementVector = Quaternion.AngleAxis(_camera.transform.eulerAngles.y, Vector3.up) * new Vector3(movement.x, 0, movement.y);
         _camera.transform.position = ClampedPositionVector(movementVector);
-        
     }
     // potentially speed up rotation when key pressed for longer
     public void RotateCamera()

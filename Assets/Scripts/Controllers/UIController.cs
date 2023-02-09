@@ -9,14 +9,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI currentTimeText;
     [SerializeField] private TextMeshProUGUI recordTimeText;
+    [SerializeField] private GameObject newRecordPopup;
     [SerializeField] private GameObject decisionPanel;
     [SerializeField] private TextMeshProUGUI decisionText;
     [SerializeField] private GameObject informationPanel;
     [SerializeField] private TextMeshProUGUI informationText;
     [SerializeField] private TextMeshProUGUI timerText;
     public static UIController instance;
-    private void Awake() {
-        if(instance != null)
+    private void Awake()
+    {
+        if (instance != null)
             Destroy(this);
         else
             instance = this;
@@ -56,28 +58,46 @@ public class UIController : MonoBehaviour
     {
         informationPanel.SetActive(false);
     }
+
     public void OnGameOver(float currentSeconds, float recordSeconds)
     {
+        ManageGameOverTimes(currentSeconds, recordSeconds);
         gameOverPanel.SetActive(true);
+    }
+
+    private void ManageGameOverTimes(float currentSeconds, float recordSeconds)
+    {
         currentTimeText.text = ConvertToTimeString(currentSeconds);
-        if(recordSeconds != 0f)
+        if (recordSeconds != 0f)
+        {
             recordTimeText.text = ConvertToTimeString(recordSeconds);
+            if (currentSeconds < recordSeconds)
+            {
+                recordTimeText.fontStyle = FontStyles.Strikethrough;
+                newRecordPopup.SetActive(true);
+            }
+            else
+                recordTimeText.fontStyle = FontStyles.Bold;
+        }
         else
         {
             recordTimeText.text = "No record";
             recordTimeText.fontStyle = FontStyles.Strikethrough;
+            newRecordPopup.SetActive(true);
         }
-        if(currentSeconds < recordSeconds)
-            recordTimeText.fontStyle = FontStyles.Strikethrough;
-            
     }
+    
     public void OnGameStart()
     {
-        GameController.instance.GameStart();
         gameOverPanel.SetActive(false);
         startPanel.SetActive(false);
         CloseDecision();
         CloseInformation();
+        newRecordPopup.SetActive(false);
+    }
+    public void OnPlayButton()
+    {
+        GameController.instance.startGameDelegate.Invoke();
     }
     public void OnYesButton()
     {
@@ -89,7 +109,7 @@ public class UIController : MonoBehaviour
         GameController.instance.NegativeDecision();
         CloseDecision();
     }
-    
+
     public void OnOkButton()
     {
         GameController.instance.NegativeDecision();

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Key : Interactable
 {
+    BoxCollider boxCollider;
+    protected override void Awake()
+    {
+        base.Awake();
+        boxCollider = GetComponent<BoxCollider>();
+    }
     public override void Interact()
     {
         Debug.Log("Interact with key");
@@ -12,10 +18,15 @@ public class Key : Interactable
     public override void OnPositiveDecision()
     {
         GameController.instance.hasKey = true;
-        gameObject.SetActive(false);
+        audioSource.Play();
+        meshRenderers[0].enabled = false;
+        boxCollider.enabled = false;
+
     }
     public override void NewGameState()
     {
-        gameObject.SetActive(true);
+
+        meshRenderers[0].enabled = true;
+        boxCollider.enabled = true;
     }
 }

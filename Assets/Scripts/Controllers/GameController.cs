@@ -6,12 +6,16 @@ using UnityEngine.InputSystem;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public bool hasKey = false;
-    public Interactable hoveredInteractable;
+    [HideInInspector] public bool hasKey = false;
+    [HideInInspector] public Interactable hoveredInteractable;
     private Interactable selectedInteractable;
     public InputActions _InputActions{get; private set;}
     private UIController uIController;
     private float timePassed=0f, record=0f;
+    private InteractableRandomizer interactableRandomizer;
+    public delegate void StartGameDelegate();
+    public StartGameDelegate startGameDelegate;
+    [SerializeField] private AudioSource backgroundMusicSource, victorySoundSource;
     private void Awake() {
         if (instance != null)
             Destroy(this);
@@ -21,12 +25,15 @@ public class GameController : MonoBehaviour
         _InputActions = new InputActions();
         _InputActions.Player.Enable();
         _InputActions.Player.Interact.performed += OnMouseClick;
+        startGameDelegate += GameStart;
     }
     // Start is called before the first frame update
     void Start()
     {
         uIController = UIController.instance;
         uIController.InitializeUI();
+        startGameDelegate += uIController.OnGameStart;
+        interactableRandomizer = FindObjectOfType<InteractableRandomizer>();
         Time.timeScale = 0;
     }
 
@@ -46,8 +53,11 @@ public class GameController : MonoBehaviour
     }
     public void GameStart()
     {
+        interactableRandomizer.RandomizeInteractables();
         timePassed = 0f;
         Time.timeScale = 1f;
+        victorySoundSource.Stop();
+        backgroundMusicSource.Play();
     }
     public void GameOver()
     {
@@ -56,6 +66,8 @@ public class GameController : MonoBehaviour
             record = timePassed;
         hasKey = false;
         Time.timeScale = 0;
+        backgroundMusicSource.Stop();
+        victorySoundSource.Play();
     }
     public void PositiveDecision()
     {

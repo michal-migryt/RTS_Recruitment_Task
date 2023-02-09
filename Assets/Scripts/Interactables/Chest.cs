@@ -19,12 +19,13 @@ public class Chest : Interactable
     }
     public override void OnPositiveDecision()
     {
+        audioSource.Play();
         animator.SetTrigger("Open");
         boxCollider.enabled = false;
     }
     public override void NewGameState()
     {
-        // Randomize position
+        animator.Play("StartState");
         boxCollider.enabled = true;
     }
 }

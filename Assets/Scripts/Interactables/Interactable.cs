@@ -7,10 +7,11 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected string question;
     [SerializeField] protected AudioSource audioSource;
     // List in case object has multiple mesh renderers like chest game object
-    private List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
+    protected List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
     private Color normalColor, highlightColor = Color.white;
 
     protected virtual void Awake() {
+        audioSource = GetComponent<AudioSource>();
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         meshRenderers.Add(meshRenderer);
         MeshRenderer[] tempMeshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -20,7 +21,9 @@ public class Interactable : MonoBehaviour
         }
         normalColor = meshRenderer.material.color;
     }
-
+    private void Start() {
+        GameController.instance.startGameDelegate += NewGameState;
+    }
     private void OnMouseEnter() {
         foreach(MeshRenderer meshRenderer in meshRenderers)
             meshRenderer.material.color = highlightColor;
