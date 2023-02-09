@@ -11,8 +11,7 @@ public class GameController : MonoBehaviour
     private Interactable selectedInteractable;
     public InputActions _InputActions{get; private set;}
     private UIController uIController;
-    private float timePassed=0f;
-    private float record=0f;
+    private float timePassed=0f, record=0f;
     private void Awake() {
         if (instance != null)
             Destroy(this);
@@ -22,22 +21,20 @@ public class GameController : MonoBehaviour
         _InputActions = new InputActions();
         _InputActions.Player.Enable();
         _InputActions.Player.Interact.performed += OnMouseClick;
-        
-        
     }
     // Start is called before the first frame update
     void Start()
     {
         uIController = UIController.instance;
-        // uIController.InitializeUI();
-        // Time.timeScale = 0;
+        uIController.InitializeUI();
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         timePassed += Time.deltaTime;
-        // uIController.UpdateTimer(timePassed);
+        uIController.UpdateTimer(timePassed);
     }
     private void OnMouseClick(InputAction.CallbackContext context)
     {
@@ -50,11 +47,14 @@ public class GameController : MonoBehaviour
     public void GameStart()
     {
         timePassed = 0f;
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
     }
     public void GameOver()
     {
-        uIController.OnGameOver();
+        uIController.OnGameOver(timePassed, record);
+        if(timePassed < record || record == 0f)
+            record = timePassed;
+        hasKey = false;
         Time.timeScale = 0;
     }
     public void PositiveDecision()

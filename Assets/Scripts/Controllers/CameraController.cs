@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
     // potentially speed up rotation when key pressed for longer
     public void RotateCamera()
     {
-        float rotation = inputActions.Player.CameraRotation.ReadValue<float>() * rotationSpeed;
+        float rotation = inputActions.Player.CameraRotation.ReadValue<float>() * rotationSpeed * Time.deltaTime;
         _camera.transform.Rotate(0, rotation ,0, Space.World);
     }
     // clamp camera position between min and max values

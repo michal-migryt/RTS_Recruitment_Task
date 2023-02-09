@@ -30,8 +30,13 @@ public class UIController : MonoBehaviour
     }
     public void UpdateTimer(float seconds)
     {
+        timerText.text = ConvertToTimeString(seconds);
+    }
+    private string ConvertToTimeString(float seconds)
+    {
         TimeSpan timeSpan = TimeSpan.FromSeconds(seconds);
-        timerText.text = timeSpan.ToString("mm':'ss':'ff");
+        string result = timeSpan.ToString("mm':'ss':'ff");
+        return result;
     }
     public void ShowDecision(string question)
     {
@@ -51,15 +56,28 @@ public class UIController : MonoBehaviour
     {
         informationPanel.SetActive(false);
     }
-    public void OnGameOver()
+    public void OnGameOver(float currentSeconds, float recordSeconds)
     {
         gameOverPanel.SetActive(true);
+        currentTimeText.text = ConvertToTimeString(currentSeconds);
+        if(recordSeconds != 0f)
+            recordTimeText.text = ConvertToTimeString(recordSeconds);
+        else
+        {
+            recordTimeText.text = "No record";
+            recordTimeText.fontStyle = FontStyles.Strikethrough;
+        }
+        if(currentSeconds < recordSeconds)
+            recordTimeText.fontStyle = FontStyles.Strikethrough;
+            
     }
     public void OnGameStart()
     {
         GameController.instance.GameStart();
         gameOverPanel.SetActive(false);
         startPanel.SetActive(false);
+        CloseDecision();
+        CloseInformation();
     }
     public void OnYesButton()
     {
@@ -71,6 +89,7 @@ public class UIController : MonoBehaviour
         GameController.instance.NegativeDecision();
         CloseDecision();
     }
+    
     public void OnOkButton()
     {
         GameController.instance.NegativeDecision();

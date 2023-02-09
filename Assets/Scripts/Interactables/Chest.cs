@@ -12,18 +12,10 @@ public class Chest : Interactable
         animator = GetComponent<Animator>();
         animator.Play("StartState");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    private void Update() {
-        Debug.Log(transform.position);
-    }
     public override void Interact()
     {
-        Debug.Log("interacted");
-        // OnPositiveDecision();
+        Debug.Log("Interact with chest");
+        UIController.instance.ShowDecision(question);
     }
     public override void OnPositiveDecision()
     {
