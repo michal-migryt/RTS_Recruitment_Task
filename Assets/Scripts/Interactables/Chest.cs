@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Chest : Interactable
 {
-    private BoxCollider boxCollider;
     private Animator animator;
     override protected void Awake() {
         base.Awake();
-        boxCollider = GetComponent<BoxCollider>();
+
         animator = GetComponent<Animator>();
         animator.Play("StartState");
     }

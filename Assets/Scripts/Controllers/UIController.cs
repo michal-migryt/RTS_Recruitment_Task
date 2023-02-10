@@ -86,7 +86,10 @@ public class UIController : MonoBehaviour
             newRecordPopup.SetActive(true);
         }
     }
-    
+    public bool IsWindowOpen()
+    {
+        return decisionPanel.activeSelf || informationPanel.activeSelf;
+    }
     public void OnGameStart()
     {
         gameOverPanel.SetActive(false);

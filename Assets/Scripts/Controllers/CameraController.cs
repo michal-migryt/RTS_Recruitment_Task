@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zMax;
     
     private InputActions inputActions;
+    private UIController uIController;
     
     private void Awake() {
         _camera = Camera.main;
@@ -24,9 +25,12 @@ public class CameraController : MonoBehaviour
     private void Start() {
         inputActions = GameController.instance._InputActions;
         GameController.instance.startGameDelegate += ResetCameraPosition;
+        uIController = UIController.instance;
     }
     void Update()
     {
+        if(uIController.IsWindowOpen())
+            return;
         MoveCamera();
         RotateCamera();
     }

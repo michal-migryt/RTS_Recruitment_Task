@@ -18,4 +18,5 @@ public class Door : Interactable
         audioSource.Play();
         GameController.instance.GameOver();
     }
+    
 }

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Interactable : MonoBehaviour
 {
     [SerializeField] protected string question;
     [SerializeField] protected AudioSource audioSource;
     // List in case object has multiple mesh renderers like chest game object
     protected List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
+    protected BoxCollider boxCollider;
     private Color normalColor, highlightColor = Color.white;
 
     protected virtual void Awake() {
@@ -20,6 +22,7 @@ public class Interactable : MonoBehaviour
             meshRenderers.Add(mR);
         }
         normalColor = meshRenderer.material.color;
+        boxCollider = GetComponent<BoxCollider>();
     }
     private void Start() {
         GameController.instance.startGameDelegate += NewGameState;
@@ -37,6 +40,10 @@ public class Interactable : MonoBehaviour
         
         if(GameController.instance.hoveredInteractable == this)
             GameController.instance.hoveredInteractable = null;
+    }
+    public Vector3 GetMeasurements()
+    {
+        return boxCollider.size * transform.localScale.x;
     }
    
     public virtual void Interact(){}

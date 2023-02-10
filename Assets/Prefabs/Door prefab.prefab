@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fff56f7ad439e7c40863fb343534d78d, type: 3}
       propertyPath: m_Name
-      value: WoodenSquaredDoor (1)
+      value: Door prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fff56f7ad439e7c40863fb343534d78d, type: 3}
@@ -95,21 +95,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9650022, y: 0.20255476, z: 2.124999}
   m_Center: {x: -0.045528665, y: -0.092623055, z: -1.0539293}
---- !u!114 &3646929527937671978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5040726360445897499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc4a7b9bb7beb44bbde3e0191c3a848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  question: Open?
-  audioSource: {fileID: 0}
-  information: You need a key!
 --- !u!82 &4749093613612941009
 AudioSource:
   m_ObjectHideFlags: 0
@@ -121,7 +106,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0213e4d6876a478418ce13ae93597d78, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -206,3 +191,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3646929527937671978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040726360445897499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc4a7b9bb7beb44bbde3e0191c3a848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: Open?
+  audioSource: {fileID: 0}
+  information: You need a key!

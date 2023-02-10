@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Key : Interactable
 {
-    BoxCollider boxCollider;
     protected override void Awake()
     {
         base.Awake();

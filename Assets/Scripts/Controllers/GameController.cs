@@ -34,14 +34,14 @@ public class GameController : MonoBehaviour
         uIController.InitializeUI();
         startGameDelegate += uIController.OnGameStart;
         interactableRandomizer = FindObjectOfType<InteractableRandomizer>();
+        interactableRandomizer.SpawnDoors();
         Time.timeScale = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timePassed += Time.deltaTime;
-        uIController.UpdateTimer(timePassed);
+        ManageTime();
     }
     private void OnMouseClick(InputAction.CallbackContext context)
     {
@@ -50,6 +50,11 @@ public class GameController : MonoBehaviour
             selectedInteractable = hoveredInteractable;
             selectedInteractable.Interact();
         }
+    }
+    private void ManageTime()
+    {
+        timePassed += Time.deltaTime;
+        uIController.UpdateTimer(timePassed);
     }
     public void GameStart()
     {
