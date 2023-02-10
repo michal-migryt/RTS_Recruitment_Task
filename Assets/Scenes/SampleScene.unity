@@ -4367,7 +4367,7 @@ MonoBehaviour:
   chest: {fileID: 79035102}
   key: {fileID: 1992474400}
   doorPrefab: {fileID: 5040726360445897499, guid: 94b8a6b3dffbb5544ab640618c198a85, type: 3}
-  doorAmount: 3
+  doorAmount: 4
 --- !u!1 &1915179033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4662,15 +4662,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8191999269516744030, guid: 11ebd3844b93ffe4694a54c31c62c00c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 8191999269516744030, guid: 11ebd3844b93ffe4694a54c31c62c00c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8191999269516744030, guid: 11ebd3844b93ffe4694a54c31c62c00c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 38.94
       objectReference: {fileID: 0}
     - target: {fileID: 8191999269516744030, guid: 11ebd3844b93ffe4694a54c31c62c00c, type: 3}
       propertyPath: m_LocalRotation.w
