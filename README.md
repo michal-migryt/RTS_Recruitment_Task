@@ -1,2 +1,18 @@
 # RTS_Recruitment_Task
  
+# Credits
+Graphics:
+- Low Poly Key, yd, CC0, https://opengameart.org/content/low-poly-key
+- Free Simple Treasure Chest, Pixel Tower Media, Standard Unity Asset Store EULA, https://assetstore.unity.com/packages/3d/free-simple-treasure-chest-78920
+- Wooden Squared Door, lucaslm, CC-BY 3.0, https://opengameart.org/content/wooden-squared-door
+
+Materials:
+- Floor: Saloon Wood Floor PBR Material, https://freepbr.com/materials/saloon-wood-floor/
+- Walls: Worn Painted Wood Siding PBR, https://freepbr.com/materials/worn-painted-wood-siding-pbr/
+
+Music and sound effects:
+- Victory fanfare, Beau Buckley, CC-BY-SA 4.0, https://opengameart.org/content/fanfare-02
+- Gameplay music - Winds of Stories, HorrorPen, CC-BY 3.0, https://opengameart.org/content/winds-of-stories
+- Chest open sound - door creak 1, soundofsong, CC0, https://freesound.org/people/soundofsong/sounds/647646/ 
+- Door unlock(cut): https://www.zapsplat.com/music/keys-locking-or-unlocking-wooden-door-with-rattle-of-other-keys-on-key-ring/
+- Key pickup : https://www.zapsplat.com/music/bunch-of-car-keys-catch-2/
